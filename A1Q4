@@ -1,14 +1,13 @@
 4A:
-#include <stdio.h>
-
-void reverse(int a[], int n) {
-    int i, tmp;
-    for (i = 0; i < n/2; i++) {
-        tmp = a[i];
-        a[i] = a[n-1-i];
-        a[n-1-i] = tmp;
-    }
+#include <bits/stdc++.h>
+using namespace std;
+int main(){
+    vector<int>a={1,2,3,4,5};
+    reverse(a.begin(),a.end());
+    for(int x:a) cout<<x<<" ";
+    return 0;
 }
+
 
 int main() {
     int a[] = {1,2,3,4,5}, n = 5, i;
@@ -20,36 +19,28 @@ int main() {
 }
 
 4B:
-#include <stdio.h>
 
-int main() {
-    int r1, c1, r2, c2, i, j, k;
-    printf("Enter rows and cols of A: "); scanf("%d %d", &r1, &c1);
-    printf("Enter rows and cols of B: "); scanf("%d %d", &r2, &c2);
-    if (c1 != r2) { printf("Multiplication not possible\n"); return 0; }
-    int A[r1][c1], B[r2][c2], C[r1][c2];
-    printf("Enter A:\n");
-    for (i=0;i<r1;i++) for (j=0;j<c1;j++) scanf("%d",&A[i][j]);
-    printf("Enter B:\n");
-    for (i=0;i<r2;i++) for (j=0;j<c2;j++) scanf("%d",&B[i][j]);
-    for (i=0;i<r1;i++) for (j=0;j<c2;j++) { C[i][j]=0; for (k=0;k<c1;k++) C[i][j]+=A[i][k]*B[k][j]; }
-    printf("Result C =\n");
-    for (i=0;i<r1;i++) { for (j=0;j<c2;j++) printf("%d ", C[i][j]); printf("\n"); }
+#include <bits/stdc++.h>
+using namespace std;
+int main(){
+    int r1,c1,r2,c2; cin>>r1>>c1>>r2>>c2;
+    if(c1!=r2) return 0;
+    vector<vector<int>> A(r1,vector<int>(c1)), B(r2,vector<int>(c2)), C(r1,vector<int>(c2,0));
+    for(int i=0;i<r1;i++) for(int j=0;j<c1;j++) cin>>A[i][j];
+    for(int i=0;i<r2;i++) for(int j=0;j<c2;j++) cin>>B[i][j];
+    for(int i=0;i<r1;i++) for(int j=0;j<c2;j++) for(int k=0;k<c1;k++) C[i][j]+=A[i][k]*B[k][j];
+    for(int i=0;i<r1;i++){ for(int j=0;j<c2;j++) cout<<C[i][j]<<" "; cout<<"\n"; }
     return 0;
 }
 
 4C:
 
-#include <stdio.h>
-
-int main() {
-    int r, c, i, j;
-    printf("Enter rows and cols: "); scanf("%d %d", &r, &c);
-    int M[r][c], T[c][r];
-    printf("Enter matrix:\n");
-    for (i=0;i<r;i++) for (j=0;j<c;j++) scanf("%d",&M[i][j]);
-    for (i=0;i<r;i++) for (j=0;j<c;j++) T[j][i] = M[i][j];
-    printf("Transpose:\n");
-    for (i=0;i<c;i++) { for (j=0;j<r;j++) printf("%d ", T[i][j]); printf("\n"); }
+#include <bits/stdc++.h>
+using namespace std;
+int main(){
+    int r,c; cin>>r>>c;
+    vector<vector<int>> M(r,vector<int>(c));
+    for(int i=0;i<r;i++) for(int j=0;j<c;j++) cin>>M[i][j];
+    for(int j=0;j<c;j++){ for(int i=0;i<r;i++) cout<<M[i][j]<<" "; cout<<"\n"; }
     return 0;
 }
